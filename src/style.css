@@ -1,4 +1,70 @@
+@import url('https://fonts.googleapis.com/css2?family=Alata&display=swap');
+
+/* CSS Reset */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+:root {
+    font-family: 'Alata', sans-serif;
+    font-size: 16px;
+
+    --dev: 2px solid red;
+}
+
+html {
+    width: 100%;
+    overflow: hidden;
+}
+
 body {
-    background-color: black;
-    color: white;
+    background-color: rgb(11, 15, 70);
+    color: whitesmoke;
+}
+
+#nav-bar {
+    background-color: rgb(37, 37, 37);
+    height: 64px;
+    width: 100%;
+    border: var(--dev);
+    display: flex;
+    justify-content: center;
+}
+
+#top-level-nav {
+    width: 80vw;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: var(--dev);
+}
+
+.main {
+    margin-top: 30px;
+    border: var(--dev);
+    height: 85vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+#weather-display {
+    width: 80vw;
+    display: flex;
+    justify-content: space-between;
+    border: var(--dev);
+    flex-grow: 3;
+}
+
+#weather-forecast {
+    width: 80vw;
+    display: flex;
+    flex-grow: 1;
+    justify-content: space-between;
+    border: var(--dev);
 }

@@ -7,6 +7,23 @@
         <title>WeatherGetter</title>
     </head>
     <body>
-        Hello!
+        <nav id="nav-bar">
+            <div id="top-level-nav">
+                <div id="logo">LOGO</div>
+                <form role="search" action="/find">
+                    <input type="text" name="city-search" id="city-search" placeholder="Search for Weather..." />
+                    <button type="submit">Search</button>
+                </form>
+            </div>
+        </nav>
+
+        <main class="main">
+            <div id="weather-display">
+                <div>city</div>
+                <div>weather</div>
+                <div>stats</div>
+            </div>
+            <div id="weather-forecast">Forecast</div>
+        </main>
     </body>
 </html>
