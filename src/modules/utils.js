@@ -3,3 +3,5 @@ function generateQueryConstructor(query) {
         this[key] = query[key]
     }
 }
+
+export { generateQueryConstructor }

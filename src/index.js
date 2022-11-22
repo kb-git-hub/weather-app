@@ -1,5 +1,7 @@
-import FetchWrapper from './modules/fetchWrapper.class'
 import '/src/style.css'
+import WeatherGetter from './modules/weathergetter.class'
+import WeatherConfig from './modules/config/weathergetter.config'
 
-const API = new FetchWrapper('https://api.openweathermap.org/data/2.5/weather?q=')
-API.get('bentonville').then((response) => console.log(response))
+const API = new WeatherGetter(WeatherConfig)
+API.buildWeatherProfile('bentonville', 'AR', 'US', 'imperial')
+console.log('api', API)
