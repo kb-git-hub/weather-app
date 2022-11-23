@@ -4,27 +4,82 @@
         <meta charset="UTF-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>WeatherGetter</title>
         <link rel="shortcut icon" href="/src/assets/favicon.png" type="icon" />
+        <!-- <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet" /> -->
+        <link
+            rel="stylesheet"
+            href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0"
+        />
+        <title>WeatherGetter</title>
     </head>
     <body>
+        <div class="backdrop"></div>
         <nav id="nav-bar">
             <div id="top-level-nav">
-                <div id="logo">LOGO</div>
+                <div id="logo">
+                    <img src="/src/assets/x2.png" alt="" srcset="" id="logoImg" />
+                    <div>weather</div>
+                </div>
+                <button id="wd-change-unit">Display °C</button>
                 <form role="search" action="/find">
                     <input type="text" name="city-search" id="city-search" placeholder="Search for Weather..." />
-                    <button type="submit">Search</button>
+                    <button type="submit" id="get-weather-btn">
+                        <span class="material-symbols-outlined">search</span>
+                    </button>
                 </form>
             </div>
         </nav>
 
         <main class="main">
             <div id="weather-display">
-                <div>city</div>
-                <div>weather</div>
-                <div>stats</div>
+                <div id="weather-display-overview">
+                    <div id="wd-city">Bentonville</div>
+                    <div id="wd-data">Monday, 21st Nov, 2022</div>
+                    <div id="wd-time">5:32AM</div>
+                </div>
+                <div id="weather-display-temperature">
+                    <div id="wd-temperature">80 °F</div>
+                    <div id="wd-description">Clear sky</div>
+                    <div id="wd-icon">icon</div>
+                    <div id="wd-lat">36.3729</div>
+                    <div id="wd-lng">-94.2088</div>
+                </div>
+                <div id="weather-display-stats">
+                    <div id="wd-feels-like">feels Like</div>
+                    <div id="wd-feels-like-result">60 °C</div>
+
+                    <div id="wd-humidity">humidity</div>
+                    <div id="wd-feels-like-result">78%</div>
+
+                    <div id="wd-wind-speed">WInd Speed</div>
+                    <div id="wd-feels-like-result">11.2 km/h</div>
+                </div>
             </div>
-            <div id="weather-forecast">Forecast</div>
+            <div id="weather-forecast">
+                <div>Three Hour Forecast</div>
+                <div id="wd-hourly-container">
+                    <div id="hourly-0-time" class="hourly-module">
+                        <div class="hourly-time">9am</div>
+                        <div class="hourly-temperature">72 F</div>
+                        <div class="hourly-icon">icon</div>
+                    </div>
+                    <div id="hourly-1-time" class="hourly-module">
+                        <div class="hourly-time">12pm</div>
+                        <div class="hourly-temperature">72 F</div>
+                        <div class="hourly-icon">icon</div>
+                    </div>
+                    <div id="hourly-2-time" class="hourly-module">
+                        <div class="hourly-time">3pm</div>
+                        <div class="hourly-temperature">72 F</div>
+                        <div class="hourly-icon">icon</div>
+                    </div>
+                    <div id="hourly-3-time" class="hourly-module">
+                        <div class="hourly-time">6pm</div>
+                        <div class="hourly-temperature">72 F</div>
+                        <div class="hourly-icon">icon</div>
+                    </div>
+                </div>
+            </div>
         </main>
     </body>
 </html>
