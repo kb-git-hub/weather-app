@@ -56,6 +56,10 @@ body {
     align-items: center;
 }
 
+#top-level-nav div {
+    width: 200px;
+}
+
 #logo {
     cursor: default;
     height: 44px;
@@ -70,7 +74,6 @@ body {
 
 .main {
     margin-top: 30px;
-    border: var(--dev);
     height: 85vh;
     display: flex;
     justify-content: center;
@@ -140,9 +143,8 @@ body {
 }
 
 ::placeholder {
-    /* Chrome, Firefox, Opera, Safari 10.1+ */
     color: whitesmoke;
-    opacity: 0.5; /* Firefox */
+    opacity: 0.5;
 }
 
 #get-weather-btn {
