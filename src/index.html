@@ -21,8 +21,13 @@
                     <div>weather</div>
                 </div>
                 <button id="wd-change-unit">Display °C</button>
-                <form role="search" action="/find">
-                    <input type="text" name="city-search" id="city-search" placeholder="Search for Weather..." />
+                <form role="search" action="/find" id="weather-search-form">
+                    <input
+                        type="text"
+                        name="city-search"
+                        id="weather-search-input"
+                        placeholder="Search for Weather..."
+                    />
                     <button type="submit" id="get-weather-btn">
                         <span class="material-symbols-outlined">search</span>
                     </button>
@@ -34,25 +39,29 @@
             <div id="weather-display">
                 <div id="weather-display-overview">
                     <div id="wd-city">Bentonville</div>
-                    <div id="wd-data">Monday, 21st Nov, 2022</div>
+                    <div id="wd-date">Monday, 21st Nov, 2022</div>
                     <div id="wd-time">5:32AM</div>
                 </div>
                 <div id="weather-display-temperature">
                     <div id="wd-temperature">80 °F</div>
                     <div id="wd-description">Clear sky</div>
-                    <div id="wd-icon">icon</div>
-                    <div id="wd-lat">36.3729</div>
-                    <div id="wd-lng">-94.2088</div>
+                    <div>
+                        <img id="wd-icon" src="" alt="" />
+                    </div>
+                    <div id="wd-lat">lat: 36.3729</div>
+                    <div id="wd-lng">lng: -94.2088</div>
+                    <div id="wd-rise">sunrise: 5:30am</div>
+                    <div id="wd-set">sunset: 6:46pm</div>
                 </div>
                 <div id="weather-display-stats">
                     <div id="wd-feels-like">feels Like</div>
                     <div id="wd-feels-like-result">60 °C</div>
 
                     <div id="wd-humidity">humidity</div>
-                    <div id="wd-feels-like-result">78%</div>
+                    <div id="wd-humidity-result">78%</div>
 
                     <div id="wd-wind-speed">WInd Speed</div>
-                    <div id="wd-feels-like-result">11.2 km/h</div>
+                    <div id="wd-wind-speed-result">11.2 km/h</div>
                 </div>
             </div>
             <div id="weather-forecast">

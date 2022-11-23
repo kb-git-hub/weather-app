@@ -85,7 +85,6 @@ body {
     width: 80vw;
     display: flex;
     justify-content: space-between;
-    border: var(--dev);
     flex-grow: 3;
 }
 
@@ -109,21 +108,19 @@ body {
     width: 80vw;
     display: flex;
     flex-grow: 1;
-    border: var(--dev);
     display: flex;
     flex-direction: column;
     text-align: center;
 }
 
 #wd-hourly-container {
-    border: var(--dev);
     flex-grow: 1;
     display: flex;
     justify-content: space-evenly;
 }
 
 .hourly-module {
-    border: var(--dev);
+    margin-top: 10px;
 }
 
 #wd-change-unit {
@@ -134,7 +131,7 @@ body {
     color: whitesmoke;
 }
 
-#city-search {
+#weather-search-input {
     background-color: inherit;
     color: whitesmoke;
     border: 2px solid whitesmoke;
