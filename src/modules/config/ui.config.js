@@ -4,7 +4,6 @@ export default {
         weatherSearchForm: '#weather-search-form',
         weatherSearchInput: '#weather-search-input',
     },
-
     siteComponents: {
         leftStats: {
             city: '#wd-city',
@@ -27,4 +26,6 @@ export default {
             windSpeed: '#wd-wind-speed-result',
         },
     },
+    activeWeatherLocation: {},
+    activeDisplayUnit: 'imperial',
 }

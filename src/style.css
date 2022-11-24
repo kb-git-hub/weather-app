@@ -157,3 +157,14 @@ body {
     height: 100%;
     z-index: -1;
 }
+
+.unitDisplay {
+    padding: 0px 10px;
+    font-size: 0.9rem;
+}
+
+.unitDisplay.active {
+    border: 1px solid whitesmoke;
+    border-radius: 20px;
+    font-size: 1.2rem;
+}

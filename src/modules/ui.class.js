@@ -1,3 +1,4 @@
+import populatePage from './ui-methods/ui.methods'
 import { generateQueryConstructor } from './utils'
 
 export default class UI {
@@ -6,16 +7,32 @@ export default class UI {
     }
 
     renderWeather() {
-        this.#populatePage()
+        populatePage.call(this)
     }
 
-    updateUnits() {}
+    updateUnits() {
+        const { displayUnit } = this.userInput
+        const spans = displayUnit.querySelectorAll('span')
+        spans.forEach((span) => {
+            if (!span.classList.contains('active')) {
+                span.classList.add('active')
+                if (span.textContent === '°F') this.activeDisplayUnit = 'imperial'
+                if (span.textContent === '°C') this.activeDisplayUnit = 'metric'
+            } else span.classList.remove('active')
+        })
+    }
+
+    // Stores Active Weather Object in UI Class
+    getWeatherAPI(API) {
+        this.activeWeatherLocation = API
+    }
 
     buildInteraction() {
         this.#createSelectors()
         this.#createEvents()
     }
 
+    // Convert config into query Selectors
     #createSelectors() {
         this.#convertConfigToDOMSelectors(this.siteComponents.leftStats)
         this.#convertConfigToDOMSelectors(this.siteComponents.centerStats)
@@ -23,9 +40,26 @@ export default class UI {
         this.#convertConfigToDOMSelectors(this.userInput)
     }
 
-    #createEvents() {}
+    // create user interaction
+    #createEvents() {
+        const { displayUnit, weatherSearchForm, weatherSearchInput } = this.userInput
 
-    #populatePage() {}
+        displayUnit.addEventListener('click', () => this.updateUnits())
+
+        weatherSearchForm.addEventListener('submit', (e) => {
+            e.preventDefault()
+            const locationSearch = weatherSearchInput.value
+            weatherSearchInput.value = ''
+        })
+    }
+
+    /// //
+
+    #convertConfigToDOMSelectors(object) {
+        for (const element in object) {
+            object[element] = document.querySelector(object[element])
+        }
+    }
 
     getIcon(weather) {
         const iconName = weather.weatherStats.currentWeather.weather[0].icon
@@ -34,13 +68,6 @@ export default class UI {
         this.siteComponents.centerStats.weatherIcon.src = url
 
         // this.siteComponents.centerStats.weatherIcon.src = url
-        console.log(this.siteComponents.centerStats.weatherIcon)
-    }
-
-    #convertConfigToDOMSelectors(object) {
-        for (const element in object) {
-            object[element] = document.querySelector(object[element])
-        }
     }
 }
 
