@@ -1,4 +1,5 @@
-import populatePage from './ui-methods/ui.methods'
+import populatePageCenter from './ui-methods/ui.methods.center'
+import populatePageLeft from './ui-methods/ui.methods.left'
 import { generateQueryConstructor } from './utils'
 
 export default class UI {
@@ -16,7 +17,8 @@ export default class UI {
 
         await this.#getWeatherForLocation(locationSearch, '', '', this.displayUnit)
         weatherSearchInput.value = ''
-        populatePage.call(this)
+        populatePageLeft.call(this)
+        // populatePageCenter.call(this)
     }
 
     updateUnits() {
@@ -51,7 +53,7 @@ export default class UI {
 
     async #getWeatherForLocation(city = '', state = '', country = '', units = this.activeDisplayUnit) {
         await this.activeWeatherLocation.buildWeatherProfile(city, state, country, units)
-        console.log(this.activeWeatherLocation)
+        console.log(this.activeWeatherLocation.weatherStats)
     }
 
     // Convert config into query Selectors

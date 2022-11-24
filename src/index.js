@@ -1,4 +1,5 @@
 import '/src/style.css'
+
 import WeatherGetter from './modules/weathergetter.class'
 import UI from './modules/ui.class'
 import WeatherConfig from './modules/config/weathergetter.config'
