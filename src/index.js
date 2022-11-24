@@ -5,7 +5,7 @@ import WeatherConfig from './modules/config/weathergetter.config'
 import uiConfig from './modules/config/ui.config'
 
 const API = new WeatherGetter(WeatherConfig)
-API.buildWeatherProfile('bentonville', 'AR', 'US', 'imperial')
+// API.buildWeatherProfile('bentonville', 'AR', 'US', 'imperial')
 
 const ui = new UI(uiConfig)
 ui.buildInteraction()
