@@ -20,6 +20,14 @@ export default class UI {
                 if (span.textContent === '°C') this.activeDisplayUnit = 'metric'
             } else span.classList.remove('active')
         })
+        console.log(this.activeWeatherLocation)
+        if (Object.keys(this.activeWeatherLocation.weatherStats.currentWeather).length === 0) return
+        this.#getWeatherForLocation(
+            this.activeWeatherLocation.weatherStats.hourlyWeather.city.name,
+            '',
+            this.activeWeatherLocation.weatherStats.hourlyWeather.city.name,
+            this.activeDisplayUnit
+        )
     }
 
     buildInteraction() {
@@ -45,6 +53,12 @@ export default class UI {
         this.#convertConfigToDOMSelectors(this.userInput)
     }
 
+    #convertConfigToDOMSelectors(object) {
+        for (const element in object) {
+            object[element] = document.querySelector(object[element])
+        }
+    }
+
     // create user interaction
     #createEvents() {
         const { displayUnit, weatherSearchForm, weatherSearchInput } = this.userInput
@@ -54,27 +68,11 @@ export default class UI {
         weatherSearchForm.addEventListener('submit', (e) => {
             e.preventDefault()
             const locationSearch = weatherSearchInput.value
-            weatherSearchInput.value = ''
+            if (!locationSearch) return
             this.#getWeatherForLocation(locationSearch, '', '', this.displayUnit)
+            weatherSearchInput.value = ''
 
             // will need to break up or do regex of user input
         })
     }
-
-    /// //
-
-    #convertConfigToDOMSelectors(object) {
-        for (const element in object) {
-            object[element] = document.querySelector(object[element])
-        }
-    }
-
-    #getIcon(weather) {
-        const iconName = weather.weatherStats.currentWeather.weather[0].icon
-        const url = `http://openweathermap.org/img/wn/${iconName}@2x.png`
-
-        this.siteComponents.centerStats.weatherIcon.src = url
-    }
 }
-
-// ui.siteComponents.leftStats.city.textContent = 'hello from vegas'
