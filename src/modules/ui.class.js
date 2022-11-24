@@ -6,7 +6,16 @@ export default class UI {
         generateQueryConstructor.call(this, ...arguments)
     }
 
-    renderWeather() {
+    async renderWeather(e) {
+        e.preventDefault()
+
+        const { weatherSearchInput } = this.userInput
+        const locationSearch = weatherSearchInput.value
+
+        if (!locationSearch) return
+
+        await this.#getWeatherForLocation(locationSearch, '', '', this.displayUnit)
+        weatherSearchInput.value = ''
         populatePage.call(this)
     }
 
@@ -40,8 +49,8 @@ export default class UI {
         this.activeWeatherLocation = API
     }
 
-    #getWeatherForLocation(city = '', state = '', country = '', units = this.activeDisplayUnit) {
-        this.activeWeatherLocation.buildWeatherProfile(city, state, country, units)
+    async #getWeatherForLocation(city = '', state = '', country = '', units = this.activeDisplayUnit) {
+        await this.activeWeatherLocation.buildWeatherProfile(city, state, country, units)
         console.log(this.activeWeatherLocation)
     }
 
@@ -61,18 +70,12 @@ export default class UI {
 
     // create user interaction
     #createEvents() {
-        const { displayUnit, weatherSearchForm, weatherSearchInput } = this.userInput
+        const { displayUnit, weatherSearchForm } = this.userInput
 
         displayUnit.addEventListener('click', () => this.updateUnits())
 
         weatherSearchForm.addEventListener('submit', (e) => {
-            e.preventDefault()
-            const locationSearch = weatherSearchInput.value
-            if (!locationSearch) return
-            this.#getWeatherForLocation(locationSearch, '', '', this.displayUnit)
-            weatherSearchInput.value = ''
-
-            // will need to break up or do regex of user input
+            this.renderWeather(e)
         })
     }
 }

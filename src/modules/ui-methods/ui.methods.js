@@ -3,17 +3,16 @@ export default function populatePage() {
 }
 
 function popCityName() {
-    const city = returnCurrentWeather.call(this, name)
-    console.log({ city })
+    const city = returnCurrentWeather.call(this, 'base')
     // this.siteComponents.leftStats.city.textContent = city
-
-    function returnCurrentWeather(input) {
-        const result = this.activeWeatherLocation.weatherStats.currentWeather.input
-        console.log('resulting get', result)
-        return result
-    }
 }
 
+function returnCurrentWeather(input) {
+    // const result = this.activeWeatherLocation.weatherStats.currentWeather.input
+    console.log('result', this.activeWeatherLocation.weatherStats.currentWeather.base)
+    // console.log('base:', result)
+    // return result
+}
 /// /////////
 
 function getIcon(weather) {
