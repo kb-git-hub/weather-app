@@ -22,14 +22,19 @@ export default class UI {
         })
     }
 
+    buildInteraction() {
+        this.#createSelectors()
+        this.#createEvents()
+    }
+
     // Stores Active Weather Object in UI Class
     getWeatherAPI(API) {
         this.activeWeatherLocation = API
     }
 
-    buildInteraction() {
-        this.#createSelectors()
-        this.#createEvents()
+    #getWeatherForLocation(city = '', state = '', country = '', units = this.activeDisplayUnit) {
+        this.activeWeatherLocation.buildWeatherProfile(city, state, country, units)
+        console.log(this.activeWeatherLocation)
     }
 
     // Convert config into query Selectors
@@ -50,6 +55,9 @@ export default class UI {
             e.preventDefault()
             const locationSearch = weatherSearchInput.value
             weatherSearchInput.value = ''
+            this.#getWeatherForLocation(locationSearch, '', '', this.displayUnit)
+
+            // will need to break up or do regex of user input
         })
     }
 
@@ -61,13 +69,11 @@ export default class UI {
         }
     }
 
-    getIcon(weather) {
+    #getIcon(weather) {
         const iconName = weather.weatherStats.currentWeather.weather[0].icon
         const url = `http://openweathermap.org/img/wn/${iconName}@2x.png`
 
         this.siteComponents.centerStats.weatherIcon.src = url
-
-        // this.siteComponents.centerStats.weatherIcon.src = url
     }
 }
 
