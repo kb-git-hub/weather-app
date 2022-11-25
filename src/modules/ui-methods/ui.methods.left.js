@@ -1,4 +1,4 @@
-export default function populatePageLeft() {
+export default function populatePageHourly() {
     popCityName.call(this)
     popDate.call(this)
     popTime.call(this)

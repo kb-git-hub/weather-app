@@ -1,6 +1,7 @@
-import populatePageCenter from './ui-methods/ui.methods.center'
 import populatePageLeft from './ui-methods/ui.methods.left'
+import populatePageCenter from './ui-methods/ui.methods.center'
 import populatePageRight from './ui-methods/ui.methods.right'
+import populatePageHourly from './ui-methods/ui.methods.hourly'
 import { generateQueryConstructor } from './utils'
 
 export default class UI {
@@ -29,6 +30,7 @@ export default class UI {
         populatePageLeft.call(this)
         populatePageCenter.call(this)
         populatePageRight.call(this)
+        populatePageHourly.call(this)
     }
 
     updateUnits() {
@@ -41,7 +43,6 @@ export default class UI {
                 if (span.textContent === '°C') this.activeDisplayUnit = 'metric'
             } else span.classList.remove('active')
         })
-        console.log(this.activeWeatherLocation)
         if (Object.keys(this.activeWeatherLocation.weatherStats.currentWeather).length === 0) return
         this.#getWeatherForLocation(
             this.activeWeatherLocation.weatherStats.hourlyWeather.city.name,
@@ -64,7 +65,6 @@ export default class UI {
 
     async #getWeatherForLocation(city = '', state = '', country = '', units = this.activeDisplayUnit) {
         await this.activeWeatherLocation.buildWeatherProfile(city, state, country, units)
-        console.log(this.activeWeatherLocation.weatherStats)
     }
 
     // Convert config into query Selectors
