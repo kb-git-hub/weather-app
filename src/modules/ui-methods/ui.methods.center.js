@@ -1,3 +1,5 @@
+import { convertTimeFormat } from './ui.methods.left'
+
 export default function populatePageCenter() {
     popTemperature.call(this)
     popDescription.call(this)
@@ -34,43 +36,24 @@ function popLatLng() {
 }
 
 function popSunriseSunset() {
+    const { timezone } = this.activeWeatherLocation.weatherStats.currentWeather
     const { sunrise } = this.activeWeatherLocation.weatherStats.currentWeather.sys
     const { sunset } = this.activeWeatherLocation.weatherStats.currentWeather.sys
 
-    this.siteComponents.centerStats.sunrise.textContent = `Sunrise: ${sunrise}`
-    this.siteComponents.centerStats.sunset.textContent = `Sunset: ${sunset}`
+    this.siteComponents.centerStats.sunrise.textContent = `Sunrise: ${convertTimeFormat(
+        getRiseSetTimes(sunrise, timezone)
+    )}`
+    this.siteComponents.centerStats.sunset.textContent = `Sunset: ${convertTimeFormat(
+        getRiseSetTimes(sunset, timezone)
+    )}`
 }
 
-// function popDate() {
-//     const date = new Date().toDateString()
-//     this.siteComponents.leftStats.date.textContent = date
-// }
-
-// function popTime() {
-//     const timeZone = returnCurrentWeather.call(this, 'timezone')
-//     const localTime = getLocalTime(timeZone)
-//     const convertedTime = convertTimeFormat(localTime)
-
-//     this.siteComponents.leftStats.time.textContent = convertedTime
-// }
-
-/// /////////
-
-// return Data from Current Weather Object
-
-// Local Time Conversion
-// function getLocalTime(localTimeZone) {
-//     const localTime = new Date().getTime()
-//     const localOffset = new Date().getTimezoneOffset() * 60000
-//     const currentTimeUTC = localTime + localOffset
-//     const targetCityOffset = currentTimeUTC + 1000 * localTimeZone
-//     const cityTime = new Date(targetCityOffset).toTimeString().split(' ')
-//     const time = cityTime[0]
-//     return time
-// }
-
-// // Time format Conversion
-// function convertTimeFormat(time) {
-//     const array = time.split(':').map((digit) => Number.parseInt(digit, 10))
-//     return array[0] > 12 ? `${array[0] - 12}:${array[1]} PM` : `${array[0]}:${array[1]} AM`
-// }
+function getRiseSetTimes(sunriseSunset, localTimeZone) {
+    const RiseSetTime = new Date(sunriseSunset * 1000).getTime()
+    const RiseSetOffset = new Date().getTimezoneOffset() * 60000
+    const currentTimeUTC = RiseSetTime + RiseSetOffset
+    const targetoffset = currentTimeUTC + 1000 * localTimeZone
+    const timeReturn = new Date(targetoffset).toTimeString().split(' ')
+    const time = timeReturn[0]
+    return time
+}

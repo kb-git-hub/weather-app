@@ -1,5 +1,6 @@
 import populatePageCenter from './ui-methods/ui.methods.center'
 import populatePageLeft from './ui-methods/ui.methods.left'
+import populatePageRight from './ui-methods/ui.methods.right'
 import { generateQueryConstructor } from './utils'
 
 export default class UI {
@@ -19,6 +20,7 @@ export default class UI {
         weatherSearchInput.value = ''
         populatePageLeft.call(this)
         populatePageCenter.call(this)
+        populatePageRight.call(this)
     }
 
     updateUnits() {
@@ -39,6 +41,9 @@ export default class UI {
             this.activeWeatherLocation.weatherStats.hourlyWeather.city.name,
             this.activeDisplayUnit
         )
+        populatePageLeft.call(this)
+        populatePageCenter.call(this)
+        populatePageRight.call(this)
     }
 
     buildInteraction() {
