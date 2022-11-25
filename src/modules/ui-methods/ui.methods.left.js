@@ -1,5 +1,3 @@
-import { returnCurrentWeather } from './ui.utils'
-
 export default function populatePageLeft() {
     popCityName.call(this)
     popDate.call(this)
@@ -7,7 +5,7 @@ export default function populatePageLeft() {
 }
 
 function popCityName() {
-    const city = returnCurrentWeather.call(this, 'name')
+    const city = this.activeWeatherLocation.weatherStats.currentWeather.name
     this.siteComponents.leftStats.city.textContent = city
 }
 
@@ -17,7 +15,7 @@ function popDate() {
 }
 
 function popTime() {
-    const timeZone = returnCurrentWeather.call(this, 'timezone')
+    const timeZone = this.activeWeatherLocation.weatherStats.currentWeather.timezone
     const localTime = getLocalTime(timeZone)
     const convertedTime = convertTimeFormat(localTime)
 
@@ -37,6 +35,6 @@ function getLocalTime(localTimeZone) {
 
 // Time format Conversion
 function convertTimeFormat(time) {
-    const array = time.split(':').map((digit) => Number.parseInt(digit, 10))
+    const array = time.split(':')
     return array[0] > 12 ? `${array[0] - 12}:${array[1]} PM` : `${array[0]}:${array[1]} AM`
 }

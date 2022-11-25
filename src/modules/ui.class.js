@@ -18,7 +18,7 @@ export default class UI {
         await this.#getWeatherForLocation(locationSearch, '', '', this.displayUnit)
         weatherSearchInput.value = ''
         populatePageLeft.call(this)
-        // populatePageCenter.call(this)
+        populatePageCenter.call(this)
     }
 
     updateUnits() {

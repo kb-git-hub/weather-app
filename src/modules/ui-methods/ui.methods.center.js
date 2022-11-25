@@ -1,30 +1,38 @@
 export default function populatePageCenter() {
-    popCityName.call(this)
-    popDate.call(this)
-    popTime.call(this)
+    popTemperature.call(this)
+    popDescription.call(this)
 }
 
-function popCityName() {
-    const city = returnCurrentWeather.call(this, 'name')
-    this.siteComponents.leftStats.city.textContent = city
+function popTemperature() {
+    const temperature = this.activeWeatherLocation.weatherStats.currentWeather.main.temp
+
+    if (this.activeDisplayUnit === 'imperial') {
+        this.siteComponents.centerStats.temperature.textContent = `${temperature} °F`
+    } else this.siteComponents.centerStats.temperature.textContent = `${temperature} °C`
 }
 
-function popDate() {
-    const date = new Date().toDateString()
-    this.siteComponents.leftStats.date.textContent = date
+function popDescription() {
+    const description = this.activeWeatherLocation.weatherStats.currentWeather.weather[0].main
+
+    this.siteComponents.centerStats.description.textContent = description
 }
 
-function popTime() {
-    const timeZone = returnCurrentWeather.call(this, 'timezone')
-    const localTime = getLocalTime(timeZone)
-    const convertedTime = convertTimeFormat(localTime)
+// function popDate() {
+//     const date = new Date().toDateString()
+//     this.siteComponents.leftStats.date.textContent = date
+// }
 
-    this.siteComponents.leftStats.time.textContent = convertedTime
-}
+// function popTime() {
+//     const timeZone = returnCurrentWeather.call(this, 'timezone')
+//     const localTime = getLocalTime(timeZone)
+//     const convertedTime = convertTimeFormat(localTime)
+
+//     this.siteComponents.leftStats.time.textContent = convertedTime
+// }
 
 /// /////////
 
-// return Data from Current Weather Obje ct
+// return Data from Current Weather Object
 
 // Local Time Conversion
 function getLocalTime(localTimeZone) {
