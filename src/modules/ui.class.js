@@ -9,15 +9,23 @@ export default class UI {
     }
 
     async renderWeather(e) {
-        e.preventDefault()
+        if (e) e.preventDefault()
 
         const { weatherSearchInput } = this.userInput
         const locationSearch = weatherSearchInput.value
 
         if (!locationSearch) return
-
         await this.#getWeatherForLocation(locationSearch, '', '', this.displayUnit)
         weatherSearchInput.value = ''
+        this.updateDisplay()
+    }
+
+    async initRender() {
+        await this.#getWeatherForLocation('Dallas', '', '', this.displayUnit)
+        this.updateDisplay()
+    }
+
+    updateDisplay() {
         populatePageLeft.call(this)
         populatePageCenter.call(this)
         populatePageRight.call(this)
@@ -41,9 +49,7 @@ export default class UI {
             this.activeWeatherLocation.weatherStats.hourlyWeather.city.name,
             this.activeDisplayUnit
         )
-        populatePageLeft.call(this)
-        populatePageCenter.call(this)
-        populatePageRight.call(this)
+        this.updateDisplay()
     }
 
     buildInteraction() {
