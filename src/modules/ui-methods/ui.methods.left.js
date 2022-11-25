@@ -23,7 +23,7 @@ function popTime() {
 }
 
 // Local Time Conversion
-function getLocalTime(localTimeZone) {
+export function getLocalTime(localTimeZone) {
     const localTime = new Date().getTime()
     const localOffset = new Date().getTimezoneOffset() * 60000
     const currentTimeUTC = localTime + localOffset
@@ -34,7 +34,7 @@ function getLocalTime(localTimeZone) {
 }
 
 // Time format Conversion
-function convertTimeFormat(time) {
+export function convertTimeFormat(time) {
     const array = time.split(':')
     return array[0] > 12 ? `${array[0] - 12}:${array[1]} PM` : `${array[0]}:${array[1]} AM`
 }
