@@ -11,3 +11,5 @@ const ui = new UI(uiConfig)
 ui.buildInteraction()
 ui.getWeatherAPI(API)
 ui.initRender()
+
+console.log('Initial Units', ui.activeDisplayUnit)

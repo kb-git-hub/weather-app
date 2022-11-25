@@ -33,7 +33,7 @@ export default class UI {
         populatePageHourly.call(this)
     }
 
-    updateUnits() {
+    async updateUnits() {
         const { displayUnit } = this.userInput
         const spans = displayUnit.querySelectorAll('span')
         spans.forEach((span) => {
@@ -43,11 +43,10 @@ export default class UI {
                 if (span.textContent === '°C') this.activeDisplayUnit = 'metric'
             } else span.classList.remove('active')
         })
-        if (Object.keys(this.activeWeatherLocation.weatherStats.currentWeather).length === 0) return
-        this.#getWeatherForLocation(
+        await this.#getWeatherForLocation(
             this.activeWeatherLocation.weatherStats.hourlyWeather.city.name,
             '',
-            this.activeWeatherLocation.weatherStats.hourlyWeather.city.name,
+            '',
             this.activeDisplayUnit
         )
         this.updateDisplay()
