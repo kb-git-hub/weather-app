@@ -1,3 +1,5 @@
+import { format, parseISO } from 'date-fns'
+
 export default function populatePageHourly() {
     popCityName.call(this)
     popDate.call(this)
@@ -35,6 +37,15 @@ export function getLocalTime(localTimeZone) {
 
 // Time format Conversion
 export function convertTimeFormat(time) {
-    const array = time.split(':')
-    return array[0] > 12 ? `${array[0] - 12}:${array[1]} PM` : `${array[0]}:${array[1]} AM`
+    let array = time.split(':')
+    array = array.map((item) => Number.parseInt(item, 10))
+
+    let [hour, minutes] = array
+
+    minutes = minutes.toString().padStart(2, '0')
+    console.log('📡 | file: ui.methods.left.js | line 46 | convertTimeFormat | minutes', minutes)
+
+    if (hour > 12) return `${hour - 12}:${minutes} PM`
+    if (hour === 0) return `${hour + 12}:${minutes} AM`
+    return `${hour}:${minutes} AM`
 }

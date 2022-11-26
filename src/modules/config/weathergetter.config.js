@@ -1,6 +1,6 @@
 export default {
     URL: {
-        baseURL: 'http://api.openweathermap.org/geo/1.0/direct?q=',
+        baseURL: 'https://api.openweathermap.org/geo/1.0/direct?q=',
         weatherURL: 'https://api.openweathermap.org/data/2.5/weather?',
         hourlyURL: 'https://api.openweathermap.org/data/2.5/forecast?',
     },
