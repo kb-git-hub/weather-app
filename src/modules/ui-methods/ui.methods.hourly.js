@@ -51,7 +51,7 @@ function getHourlyWeather() {
 function createHourlyTimeDiv(time) {
     const timeDiv = document.createElement('div')
     timeDiv.classList.add('hourly-time')
-    const formattedTime = format(parseISO(time), 'eeee, hh:mm b')
+    const formattedTime = format(parseISO(time), 'eeee, hh:mm a')
     timeDiv.textContent = formattedTime
 
     return timeDiv

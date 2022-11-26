@@ -41,6 +41,10 @@ body {
     color: whitesmoke;
 }
 
+.space {
+    margin: 10px;
+}
+
 #nav-bar {
     background-color: rgba(37, 37, 37, 0.7);
     height: 64px;
@@ -101,6 +105,17 @@ body {
     text-align: center;
 }
 
+#wd-temperature,
+#wd-city {
+    font-size: 2rem;
+}
+
+#wd-feels-like,
+#wd-humidity,
+#wd-wind-speed {
+    font-size: 0.8rem;
+}
+
 #weather-display-stats {
     text-align: right;
 }
@@ -112,6 +127,10 @@ body {
     display: flex;
     flex-direction: column;
     text-align: center;
+}
+
+#hourly-title {
+    font-size: 2rem;
 }
 
 #wd-hourly-container {
