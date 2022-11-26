@@ -19,8 +19,6 @@ export default class UI {
         if (e) e.preventDefault()
 
         const userInput = this.#parseSearch()
-        console.log('📡 | file: ui.class.js | line 22 | UI | renderWeather | userInput', userInput)
-
         if (!userInput) return
         await this.#getWeatherForLocation(
             userInput.city,

@@ -26,8 +26,12 @@ export default class WeatherGetter {
             const response = await fetch(completeURL)
             const coordinates = await response.json()
             this.updateCoordinates(coordinates[0].lat, coordinates[0].lon)
+            const errorBox = document.querySelector('#errorBox')
+            console.log({ errorBox })
+            if (errorBox.classList.contains('active')) errorBox.classList.remove('active')
         } catch (err) {
-            console.error(err)
+            const errorBox = document.querySelector('#errorBox')
+            errorBox.classList.add('active')
         }
     }
 

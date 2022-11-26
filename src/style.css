@@ -156,6 +156,21 @@ body {
 
 #weather-search-form {
     flex-shrink: 0;
+    position: relative;
+}
+
+#errorBox {
+    width: 280px !important;
+    position: absolute;
+    color: red;
+    font-size: 0.7rem;
+    top: 45px;
+
+    display: none;
+}
+
+#errorBox.active {
+    display: block;
 }
 
 #weather-search-input {
