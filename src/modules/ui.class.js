@@ -9,15 +9,26 @@ export default class UI {
         generateQueryConstructor.call(this, ...arguments)
     }
 
+    #parseSearch() {
+        const { weatherSearchInput } = this.userInput
+        const locationSearch = weatherSearchInput.value.split(',')
+        return { city: locationSearch[0], state: locationSearch[1], country: locationSearch[2] }
+    }
+
     async renderWeather(e) {
         if (e) e.preventDefault()
 
-        const { weatherSearchInput } = this.userInput
-        const locationSearch = weatherSearchInput.value
+        const userInput = this.#parseSearch()
+        console.log('📡 | file: ui.class.js | line 22 | UI | renderWeather | userInput', userInput)
 
-        if (!locationSearch) return
-        await this.#getWeatherForLocation(locationSearch, '', '', this.displayUnit)
-        weatherSearchInput.value = ''
+        if (!userInput) return
+        await this.#getWeatherForLocation(
+            userInput.city,
+            userInput.state,
+            userInput.country,
+            this.activeDisplayUnit
+        )
+        this.userInput.weatherSearchInput.value = ''
         this.updateDisplay()
     }
 
