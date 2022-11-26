@@ -35,10 +35,12 @@ html {
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
+    overflow: hidden;
 }
 
 body {
     color: whitesmoke;
+    min-height: 700px;
 }
 
 .space {
@@ -149,6 +151,11 @@ body {
     border-radius: 10px;
     background-color: inherit;
     color: whitesmoke;
+    flex-shrink: 0;
+}
+
+#weather-search-form {
+    flex-shrink: 0;
 }
 
 #weather-search-input {
@@ -187,4 +194,56 @@ body {
     border: 1px solid whitesmoke;
     border-radius: 20px;
     font-size: 1.2rem;
+}
+
+.footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    background-color: rgba(37, 37, 37, 0.7);
+    color: whitesmoke;
+    position: fixed;
+    bottom: 0px;
+    height: 50px;
+    width: 100%;
+    cursor: default;
+    margin-top: 50px;
+}
+
+.fa-github-alt {
+    font-size: 24px;
+    color: whitesmoke;
+    transition: transform 0.3s ease-in-out;
+}
+
+.fa-github-alt:hover {
+    transform: rotate(360deg) scale(1.2);
+}
+
+@media (max-height: 700px) {
+    #nav-bar {
+        display: none;
+    }
+    .footer {
+        display: none;
+    }
+
+    .main {
+        margin-top: 0px;
+    }
+}
+
+@media (max-width: 600px) {
+    #wd-lat,
+    #wd-lng,
+    #wd-rise,
+    #wd-set {
+        display: none;
+    }
+}
+@media (max-width: 400px) {
+    #weather-display-stats {
+        display: none;
+    }
 }
